@@ -11,15 +11,12 @@ int main(void) {
     }
 
     dp[0] = 0;
-    for (int len = 1; len <= n; len++) {
-        long long best = 0;
-        for (int i = 1; i <= len; i++) {
-            long long cand = p[i] + dp[len - i];
-            if (cand > best) best = cand;
+    for (int j = 1; j <= n; j++) {
+        for (int i = 1; i <= j; i++) {
+            long long m = p[i] + dp[j - i];
+            if (m > dp[j]) dp[j] = m;
         }
-        dp[len] = best;
     }
-
     printf("%lld\n", dp[n]);
     return 0;
 }
